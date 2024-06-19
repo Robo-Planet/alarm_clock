@@ -1,0 +1,36 @@
+import pygame
+import time
+
+pygame.mixer.init()
+
+def alarm(seconds):
+    time_elapsed = 0
+
+    while time_elapsed < seconds:
+        time.sleep(1)
+        time_elapsed += 1
+
+        time_left = seconds - time_elapsed
+        minutes_left = time_left //60
+        seconds_left = time_left % 60
+
+        print(f"Alarm zadzwoni za : {minutes_left:02d}:{seconds_left:02d}")
+
+    pygame.mixer.music.load("alarm.mp3")
+    pygame.mixer.music.set_volume(0.33)
+    pygame.mixer.music.play(5,0,3000)
+
+    pygame.mixer.music.queue("alarm1.mp3")
+
+
+minutes = int(input("Za ile minut ma sie wlaczyc alarm?"))
+seconds = int(input("Za ile sekund ma sie wlaczyc alarm?"))
+
+total_seconds = minutes * 60 + seconds
+
+alarm(total_seconds)
+
+
+
+
+
